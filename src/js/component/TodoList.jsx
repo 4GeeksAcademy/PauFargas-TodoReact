@@ -33,7 +33,7 @@ export const TodoList = () => {
                
                 
             </ul>
-            <div>{todos.length} Tasks</div>
+            <div> <h6>{todos.length} Tasks</h6></div>
         
         </div>
     )
