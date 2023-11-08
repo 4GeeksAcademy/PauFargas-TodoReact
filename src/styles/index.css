@@ -50,7 +50,8 @@
     border: none;
     background-color: #f0f0f0;
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;     
+    font-weight: 900;
+       
   }
   
   i {
@@ -63,5 +64,10 @@
   i:hover {
     color: #dd0000;
   }
+input:focus{
+  outline : none;
+}
 
-  
+h6{
+  text-align: right;
+}
