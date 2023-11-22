@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
 export const TodoList = () => {
-  const [inputValue, setInputValue] = useState(""); 
+  const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
+  const [hoverIndex, setHoverIndex] = useState(null);
 
-  //Qué pasa cuando aprietas ENTER:
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") { //Si no es un string vacío:
-      const updatedTodos = [inputValue, ...todos]; //Pone lo escrito DELANTE de los ToDo's
-      setTodos(updatedTodos);//Refresh de ToDo's
-      setInputValue("");//Pone el input en un string vacío.
+    if (e.key === "Enter" && inputValue.trim() !== "") {
+      const updatedTodos = [inputValue, ...todos];
+      setTodos(updatedTodos);
+      setInputValue("");
     }
   };
 
@@ -27,21 +27,30 @@ export const TodoList = () => {
           />
         </li>
 
-        {todos.map((t, index) => ( //Lista de todos. Un .map que devuelve:
-          <li key={index}> 
+        {todos.map((t, index) => (
+          <li
+            key={index}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
             {t}{" "}
-            <i
-              className="fas fa-times"
-              onClick={() =>
-                setTodos(todos.filter((_, currentIndex) => index !== currentIndex))
-              }
-            ></i>
+            {hoverIndex === index && (
+              <i
+                className="fas fa-times"
+                onClick={() =>
+                  setTodos(
+                    todos.filter((_, currentIndex) => index !== currentIndex)
+                  )
+                }
+              ></i>
+            )}
           </li>
         ))}
       </ul>
       <div>
-        
-        <div><h6>{todos.length} Tasks</h6></div>
+        <div>
+          <h6>{todos.length} Tasks</h6>
+        </div>
       </div>
     </div>
   );
