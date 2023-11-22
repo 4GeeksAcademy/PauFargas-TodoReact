@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
 export const TodoList = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(""); 
   const [todos, setTodos] = useState([]);
 
+  //Qué pasa cuando aprietas ENTER:
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
-      const updatedTodos = [inputValue, ...todos];
-      setTodos(updatedTodos);
-      setInputValue("");
+    if (e.key === "Enter" && inputValue.trim() !== "") { //Si no es un string vacío:
+      const updatedTodos = [inputValue, ...todos]; //Pone lo escrito DELANTE de los ToDo's
+      setTodos(updatedTodos);//Refresh de ToDo's
+      setInputValue("");//Pone el input en un string vacío.
     }
   };
 
@@ -26,8 +27,8 @@ export const TodoList = () => {
           />
         </li>
 
-        {todos.map((t, index) => (
-          <li key={index}>
+        {todos.map((t, index) => ( //Lista de todos. Un .map que devuelve:
+          <li key={index}> 
             {t}{" "}
             <i
               className="fas fa-times"
